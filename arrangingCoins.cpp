@@ -14,16 +14,16 @@ public:
     }
     long long arrangeCoin()
     {
-        //1.Method
-        // int i = 1;
-        // while (n - i >= 0)
-        // {
-        //     n -= i;
-        //     i++;
-        // }
-        // return i-1;
+        1.Method
+        int i = 1;
+        while (n - i >= 0)
+        {
+            n -= i;
+            i++;
+        }
+        return i-1;
         //Method 2. Formula
-        return  (int)(sqrt(2*n + 0.25) - 0.5);
+//         return  (int)(sqrt(2*n + 0.25) - 0.5);
     }
 };
 
