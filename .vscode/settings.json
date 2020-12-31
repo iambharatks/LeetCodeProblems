@@ -2,5 +2,6 @@
     "files.associations": {
         "random": "cpp",
         "iostream": "cpp"
-    }
+    },
+    "python.formatting.provider": "yapf"
 }
