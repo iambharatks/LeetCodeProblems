@@ -50,7 +50,6 @@ public:
 
 int main()
 {
-    // make dictionary
     vector<string> wordList;
     int n;
     string s;
