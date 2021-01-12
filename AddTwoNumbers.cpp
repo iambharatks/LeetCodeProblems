@@ -17,6 +17,7 @@ public:
     {
         int sum = 0;
         ListNode *l3 = NULL;
+        //refernce to head node
         ListNode **node = &l3;
         while (l1 || l2 || sum)
         {
