@@ -35,7 +35,6 @@ public:
             while (i < n && j < m)
                 sortedMat[i++][j++] = diagonals[d][x++];
         }
-
         return sortedMat;
     }
 };
