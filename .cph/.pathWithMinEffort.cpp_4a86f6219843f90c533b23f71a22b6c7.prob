@@ -1,0 +1,1 @@
+{"name":"Local: pathWithMinEffort","url":"d:\\Bharat\\LeetCode\\pathWithMinEffort.cpp","tests":[{"id":1611649830066,"input":"3 3\n1 2 2\n3 8 2\n5 3 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"d:\\Bharat\\LeetCode\\pathWithMinEffort.cpp","group":"local","local":true}
