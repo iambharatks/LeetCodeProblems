@@ -1,7 +1,9 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-class Solution
+//  Shortest Distance to a Character
+
+class SolutionQueue
 {
 public:
     vector<int> shortestToChar(string s, char c)
@@ -34,7 +36,34 @@ public:
             ans.push_back(q.front() - left);
             q.pop();
         }
-        return ans;                                                                    
+        return ans;
+    }
+};
+class Solution
+{
+public:
+    vector<int> shortestToChar(string s, char c)
+    {
+        int idx = 0;
+        int N = s.size();
+        int prev = INT_MIN / 2;
+        // INT_MIN/2 to prevent integer overflow
+        vector<int> ans(N, 0);
+        for (int i = 0; i < N; i++)
+        {
+            if (s[i] == c)
+                prev = i;
+            ans[i] = i - prev;
+        }
+        prev = INT_MAX / 2;
+        // INT_MAX/2 to prevent integer overflow
+        for (int i = N - 1; i >= 0; i--)
+        {
+            if (s[i] == c)
+                prev = i;
+            ans[i] = min(ans[i], prev - i);
+        }
+        return ans;
     }
 };
 
