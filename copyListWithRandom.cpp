@@ -3,7 +3,6 @@
 using namespace std;
 //   Copy List with Random Pointer
 
-
 // Definition for a Node.
 class Node
 {
