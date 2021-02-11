@@ -7,17 +7,16 @@ class Solution
 public:
     bool isAnagram(string s, string t)
     {
-        int f1[256] = {0};
-        int f2[256] = {0};
+        int freq[256] = {0};
         if (s.size() != t.size())
             return false;
         for (size_t i = 0; i < s.size(); i++)
         {
-            f1[s[i]]++;
-            f2[t[i]]++;
+            freq[s[i]]++;
+            freq[t[i]]--;
         }
         for (int i = 0; i < 256; i++)
-            if (f1[i] != f2[i])
+            if (freq[i])
                 return false;
         return true;
     }
