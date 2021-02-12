@@ -21,3 +21,20 @@ public:
         return (ans == -1) ? 0 : ans;
     }
 };
+class Solution
+{
+public:
+    int numberOfSteps(int num)
+    {
+        int c = 0;
+        while (num)
+        {
+            c++;
+            if (num & 1)
+                num -= 1;
+            else
+                num >>= 1;
+        }
+        return c;
+    }
+};
