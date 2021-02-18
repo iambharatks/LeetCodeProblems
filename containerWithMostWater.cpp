@@ -10,17 +10,13 @@ public:
     int maxArea(vector<int> &height)
     {
         int left = 0, right = height.size() - 1;
-        pair<int, int> boundary;
         int maxCapacity = 0, minHeight, curCapacity;
         while (left < right)
         {
             minHeight = (height[left] < height[right]) ? height[left] : height[right];
             curCapacity = (right - left) * minHeight;
             if (curCapacity > maxCapacity)
-            {
-                boundary = {left, right};
                 maxCapacity = curCapacity;
-            }
             if (height[left] <= height[right])
                 left++;
             else
