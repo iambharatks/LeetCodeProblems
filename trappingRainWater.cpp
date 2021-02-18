@@ -1,8 +1,8 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
-//O(n)
+//Time complexity := O(n)
+//Space Complexity := O(n)
 class Solution1
 {
 public:
@@ -30,7 +30,7 @@ public:
         return ans;
     }
 };
-//O(n)
+//Time complexity := O(n)
 class Solution2
 {
 public:
