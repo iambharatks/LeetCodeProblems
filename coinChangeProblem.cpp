@@ -25,6 +25,35 @@ public:
         return dp[amount];
     }
 };
+class memoization
+{
+
+public:
+    int coinChangeUtil(vector<int> &coins, int n, int amount, vector<vector<int>> &table)
+    {
+        if (amount == 0)
+            return 0;
+        if (n <= 0)
+            return INT_MAX;
+        if (table[n - 1][amount] != -1)
+            return table[n - 1][amount];
+        if (amount >= coins[n - 1])
+        {
+            int including = coinChangeUtil(coins, n, amount - coins[n - 1], table);
+            int excluding = coinChangeUtil(coins, n - 1, amount, table);
+            table[n - 1][amount] = min(((including == INT_MAX) ? INT_MAX : including + 1), excluding);
+        }
+        else
+            table[n - 1][amount] = coinChangeUtil(coins, n - 1, amount, table);
+        cout << coins[n - 1] << " " << amount << " = " << table[n - 1][amount] << "\n";
+        return table[n - 1][amount];
+    }
+    int coinChange(vector<int> &coins, int amount)
+    {
+        vector<vector<int>> table(coins.size(), vector<int>(amount + 1, -1));
+        return (coinChangeUtil(coins, coins.size(), amount, table) == INT_MAX) ? -1 : table[coins.size() - 1][amount];
+    }
+};
 class BFS
 {
 public:
@@ -66,5 +95,5 @@ int main()
     vector<int> coins(n);
     for (int &coin : coins)
         cin >> coin;
-    cout << BFS().coinChange(coins, amount);
+    cout << memoization().coinChange(coins, amount);
 }
