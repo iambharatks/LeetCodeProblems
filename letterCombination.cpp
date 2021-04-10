@@ -4,7 +4,6 @@ using namespace std;
 
 //   Letter Combinations of a Phone Number
 
-
 class Solution
 {
 public:
@@ -55,12 +54,37 @@ public:
     }
 };
 
+class Optimized
+{
+    const vector<string> a = {"", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"};
+
+public:
+    vector<string> letterCombinations(string digits)
+    {
+        if (digits.size() == 0)
+            return {};
+        vector<string> ans, tmp;
+        ans.push_back("");
+        for (char digit : digits)
+        {
+            for (char c : a[digit - '0'])
+            {
+                for (string s : ans)
+                    tmp.push_back(s + c);
+            }
+            swap(ans, tmp);
+            tmp.clear();
+        }
+        return ans;
+    }
+};
+
 int main()
 {
     string digits;
     cin >> digits;
 
-    vector<string> ans = Solution().letterCombinations(digits);
+    vector<string> ans = Optimized().letterCombinations(digits);
     for (string s : ans)
         cout << s << " ";
 }
