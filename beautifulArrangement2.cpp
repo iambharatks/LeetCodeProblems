@@ -23,3 +23,22 @@ public:
         return ans;
     }
 };
+class Solution
+{
+public:
+    vector<int> constructArray(int n, int k)
+    {
+        int l = 1, r = k + 1, idx = 0;
+        vector<int> ans(n);
+        while (l <= r)
+        {
+            ans[idx++] = l++;
+            if (l <= r)
+                ans[idx++] = r--;
+        }
+        for (int i = k + 2; i <= n; i++)
+            ans[idx++] = i;
+
+        return ans;
+    }
+};
