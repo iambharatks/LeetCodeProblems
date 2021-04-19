@@ -14,6 +14,7 @@ struct ListNode
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
 
+//two pass
 class Solution1
 {
 public:
@@ -39,4 +40,31 @@ public:
             prev->next = current->next;
         return head;
     }
-}; 
+};
+
+// single pass
+class Solution
+{
+public:
+    ListNode *removeNthFromEnd(ListNode *head, int n)
+    {
+        ListNode *first, *second;
+        first = head;
+        second = NULL;
+        for (int i = 0; i < n; i++)
+            first = first->next;
+        while (first)
+        {
+            first = first->next;
+            if (!second)
+                second = head;
+            else
+                second = second->next;
+        }
+        if (!second)
+            head = head->next;
+        else
+            second->next = second->next->next;
+        return head;
+    }
+};
