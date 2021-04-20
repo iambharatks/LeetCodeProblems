@@ -45,3 +45,28 @@ public:
         return ans;
     }
 };
+
+class Solution
+{
+public:
+    vector<int> preorder(Node *root)
+    {
+        vector<int> ans;
+        stack<Node *> s;
+        if (!root)
+            return ans;
+        s.push(root);
+        while (!s.empty())
+        {
+            root = s.top();
+            ans.push_back(root->val);
+            s.pop();
+            for (int i = root->children.size(); i >= 0; i--)
+            {
+                if (!(root->children[i]))
+                    s.push(root->children[i]);
+            }
+        }
+        return ans;
+    }
+};
