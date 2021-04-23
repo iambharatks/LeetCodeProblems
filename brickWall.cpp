@@ -18,13 +18,8 @@ public:
             {
                 width += wall[i][j];
                 mp[width] += 1;
+                ans = max(ans, mp[width]);
             }
-        }
-        for (auto it : mp)
-        {
-            cout << it.first << " " << it.second << "\n";
-            if (it.second > ans)
-                ans = it.second;
         }
         return wall.size() - ans;
     }
