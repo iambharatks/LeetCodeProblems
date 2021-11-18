@@ -31,7 +31,39 @@ public:
         return wordBreak(s, 0);
     }
 };
-
+class SolutionBFS
+{
+public:
+    bool wordBreak(string s, vector<string> &wordDict)
+    {
+        unordered_set<string> d;
+        for (string s : wordDict)
+            d.insert(s);
+        queue<int> q;
+        unordered_set<int> visited;
+        q.push(0);
+        int start;
+        while (!q.empty())
+        {
+            start = q.front();
+            q.pop();
+            if (visited.find(start) == visited.end())
+            {
+                visited.insert(start);
+                for (int i = start; i < s.size(); i++)
+                {
+                    if (d.find(s.substr(start, i - start + 1)) != d.end())
+                    {
+                        if (i >= s.size() - 1)
+                            return true;
+                        q.push(i + 1);
+                    }
+                }
+            }
+        }
+        return false;
+    }
+};
 class SolutionOptimised
 {
 public:
