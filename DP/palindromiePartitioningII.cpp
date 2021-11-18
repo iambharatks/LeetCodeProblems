@@ -53,35 +53,27 @@ public:
         return minCut(s, 0, s.size() - 1);
     }
 };
-class Solution
+class Solution1
 {
-
 public:
     int minCut(string s)
     {
-
-        int N = s.size();
-        if (N <= 1)
-            return 0;
-
-        int cuts[N + 1];
-
-        for (int i = 0; i <= N; i++)
-            cuts[i] = i - 1;
-
-        for (int i = 1; i < N; i++)
+        int n = s.size();
+        vector<int> cut(n + 1);
+        for (int i = 0; i <= n; i++)
+            cut[i] = i - 1;
+        for (int i = 1; i < n; i++)
         {
-
-            // odd length
-            for (int j = 0; (i - j) >= 0 && (i + j) < N && s[i - j] == s[i + j]; j++)
-                cuts[i + j + 1] = min(cuts[i + j + 1], cuts[i - j] + 1);
-
-            // even length
-            for (int j = 0; (i - j - 1) >= 0 && (i + j) < N && s[i - j - 1] == s[i + j]; j++)
-                cuts[i + j + 1] = min(cuts[i + j + 1], cuts[i - j - 1] + 1);
+            for (int j = 0; (i - j) >= 0 && (i + j) < n && s[i + j] == s[i - j]; j++)
+            {
+                cut[i + j + 1] = min(cut[i + j + 1], cut[i - j] + 1);
+            }
+            for (int j = 0; (i - j - 1) >= 0 && (i + j) < n && s[i + j] == s[i - j - 1]; j++)
+            {
+                cut[i + j + 1] = min(cut[i + j + 1], cut[i - j - 1] + 1);
+            }
         }
-
-        return cuts[N];
+        return cut[n];
     }
 };
 
