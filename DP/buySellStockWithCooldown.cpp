@@ -29,6 +29,11 @@ public:
         return maxProfit(prices, 0, true);
     }
 };
+// For Understanding
+//* (1) We have to `rest` before we `buy` and
+//* (2) we have to `buy` before we `sell`
+//TODO: 
+
 // Great Approach
 class Solution
 {
@@ -50,5 +55,26 @@ public:
             s2[i] = s1[i - 1] + prices[i];
         }
         return max(s0[n - 1], s2[n - 1]);
+    }
+};
+class Solution
+{
+public:
+    int maxProfit(vector<int> &prices)
+    {
+        int n = prices.size();
+        int s0, s1, s2;
+
+        s0 = 0;
+        s1 = -prices[0];
+        s2 = INT_MIN;
+        for (int i = 1; i < n; i++)
+        {
+            int ps0 = s0, ps1 = s1;
+            s0 = max(s0, s2);
+            s1 = max(s1, ps0 - prices[i]);
+            s2 = ps1 + prices[i];
+        }
+        return max(s0, s2);
     }
 };
