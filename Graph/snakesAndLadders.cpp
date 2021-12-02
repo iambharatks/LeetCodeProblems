@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//With graph
 class Solution
 {
 public:
@@ -58,5 +59,65 @@ public:
         }
 
         return bfs(adj);
+    }
+};
+
+// NO need to create a  graph
+//Better
+class Solution
+{
+public:
+    pair<int, int> rc(int i, int n)
+    {
+        int r, c;
+        c = (i - 1) % n;
+        if (((i - 1) / n) & 1)
+            c = n - c - 1;
+        r = n - (i - 1) / n - 1;
+        return {r, c};
+    }
+
+    int snakesAndLadders(vector<vector<int>> &board)
+    {
+        pair<int, int> p;
+        int n = board.size();
+
+        vector<int> dist(n * n + 1, INT_MAX);
+        int v;
+        pair<int, int> neigh;
+        queue<int> q;
+        q.push(1);
+        dist[1] = 0;
+        while (!q.empty())
+        {
+            v = q.front();
+            q.pop();
+            if (v == n * n)
+                return dist[v];
+            for (int i = 1; i < 7; i++)
+            {
+                if (i + v > n * n)
+                    break;
+                if (i + v <= n * n)
+                {
+                    p = rc(i + v, n);
+                    if (board[p.first][p.second] == -1)
+                    {
+                        if (dist[i + v] != INT_MAX)
+                            continue;
+                        q.push(i + v);
+                        dist[i + v] = dist[v] + 1;
+                    }
+                    else
+                    {
+                        if (dist[board[p.first][p.second]] != INT_MAX)
+                            continue;
+                        q.push(board[p.first][p.second]);
+                        dist[board[p.first][p.second]] = dist[v] + 1;
+                    }
+                }
+            }
+        }
+        return -1;
     }
 };
