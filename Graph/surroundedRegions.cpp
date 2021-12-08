@@ -3,6 +3,7 @@
 using namespace std;
 
 // Naive Approach
+// Brute Force
 class Solution
 {
 public:
