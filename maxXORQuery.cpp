@@ -24,3 +24,26 @@ public:
         return ans;
     }
 };
+class Solution
+{
+public:
+    vector<int> getMaximumXor(vector<int> &nums, int maximumBit)
+    {
+        vector<int> res(nums.size());
+        long long pref = 0, n = 0;
+        for (int i = 0; i < nums.size(); i++)
+        {
+            pref ^= nums[i];
+        }
+        for (int j = 0; j < maximumBit; j++)
+        {
+            n |= (1 << j);
+        }
+        for (int i = nums.size() - 1; i >= 0; i--)
+        {
+            res[nums.size() - i - 1] = (pref ^ n);
+            pref ^= nums[i];
+        }
+        return res;
+    }
+};
