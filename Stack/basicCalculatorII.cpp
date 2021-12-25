@@ -65,3 +65,41 @@ public:
         return nums.top();
     }
 };
+class Solution
+{
+public:
+    int calculate(string s)
+    {
+        s += '+';
+        char prevSign = '+';
+        int prev = 0, cur = 0, res = 0;
+        for (int i = 0; i < s.size(); ++i)
+        {
+            if (s[i] == ' ')
+                continue;
+            if (s[i] >= '0' && s[i] <= '9')
+            {
+                cur = s[i] - '0' + 10 * cur;
+            }
+            else
+            {
+                if (prevSign == '+' || prevSign == '-')
+                {
+                    res += prev;
+                    prev = (prevSign == '+' ? cur : -cur);
+                }
+                else if (prevSign == '*')
+                {
+                    prev = prev * cur;
+                }
+                else
+                {
+                    prev = prev / cur;
+                }
+                prevSign = s[i];
+                cur = 0;
+            }
+        }
+        return res + prev;
+    }
+};
