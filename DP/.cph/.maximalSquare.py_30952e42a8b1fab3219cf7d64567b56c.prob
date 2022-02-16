@@ -1,0 +1,1 @@
+{"name":"Local: maximalSquare","url":"e:\\Bharat\\LeetCode\\DP\\maximalSquare.py","tests":[{"id":1643638064559,"input":"4 5\n1 0 1 0 0 1 0 1 1 1 1 1 1 1 1 1 0 0 1 0","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"e:\\Bharat\\LeetCode\\DP\\maximalSquare.py","group":"local","local":true}
