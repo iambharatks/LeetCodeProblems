@@ -2,15 +2,14 @@
 
 using namespace std;
 
-/*
 // Definition for Employee.
-class Employee {
+class Employee
+{
 public:
     int id;
     int importance;
     vector<int> subordinates;
 };
-*/
 
 class Solution
 {
