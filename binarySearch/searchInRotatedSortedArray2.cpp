@@ -26,7 +26,7 @@ public:
                     l = mid + 1;
             }
             else
-            {
+            {   
                 if (a[mid] <= target && a[r] >= target)
                     l = mid + 1;
                 else
