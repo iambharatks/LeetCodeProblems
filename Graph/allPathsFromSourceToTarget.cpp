@@ -33,3 +33,31 @@ public:
         return res;
     }
 };
+class Solution
+{
+public:
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>> &graph)
+    {
+        vector<vector<int>> res;
+        queue<pair<int, vector<int>>> q;
+        q.push({0, {0}});
+        while (!q.empty())
+        {
+            int node = q.front().first;
+            vector<int> neighs = q.front().second;
+            q.pop();
+            if (node == graph.size() - 1)
+            {
+                res.push_back(neighs);
+                continue;
+            }
+            for (int &neigh : neighs)
+            {
+                neighs.push_back(neigh);
+                q.push({neigh, neighs});
+                neighs.pop_back();
+            }
+        }
+        return res;
+    }
+};
