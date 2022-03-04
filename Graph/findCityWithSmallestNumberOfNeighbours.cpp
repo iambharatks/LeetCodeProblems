@@ -89,3 +89,57 @@ public:
         return res;
     }
 };
+
+//* O(N*N*logN) [ACCEPTED]
+class Solution
+{
+public:
+    int dijkstra(int src, vector<vector<pair<int, int>>> &graph, int n, int distanceThreshold)
+    {
+        map<int, int> pq;
+        vector<int> dist(n, INT_MAX);
+        dist[src] = 0;
+        pq.insert({src, 0});
+        while (!pq.empty())
+        {
+            int node = pq.begin()->first;
+            pq.erase(pq.begin());
+            for (auto &neigh : graph[node])
+            {
+                if (dist[neigh.first] > dist[node] + neigh.second)
+                {
+                    dist[neigh.first] = dist[node] + neigh.second;
+                    if (pq.count(neigh.first))
+                        pq.erase(neigh.first);
+                    pq.insert({neigh.first, dist[neigh.first]});
+                }
+            }
+        }
+        int res = 0;
+        for (int i = 0; i < n; i++)
+        {
+            res += (dist[i] <= distanceThreshold);
+        }
+        return res;
+    }
+    int findTheCity(int n, vector<vector<int>> &edges, int distanceThreshold)
+    {
+        vector<vector<pair<int, int>>> graph(n);
+        for (auto &edge : edges)
+        {
+            graph[edge[0]].push_back({edge[1], edge[2]});
+            graph[edge[1]].push_back({edge[0], edge[2]});
+        }
+        int res = 0, maxCity = INT_MAX, curCity = 0;
+        for (int i = 0; i < n; i++)
+        {
+            curCity = dijkstra(i, graph, n, distanceThreshold);
+            if (maxCity >= curCity)
+            {
+                maxCity = curCity;
+                res = i;
+            }
+        }
+        return res;
+    }
+};
