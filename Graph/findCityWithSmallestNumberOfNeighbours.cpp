@@ -2,6 +2,7 @@
 
 using namespace std;
 
+//! O(N^4) [ TIME LIMITED EXCEEDED ]
 class Solution
 {
 public:
@@ -35,6 +36,53 @@ public:
             if (maxCities >= cur)
             {
                 maxCities = cur;
+                res = i;
+            }
+        }
+        return res;
+    }
+};
+
+//* O(N^3) [ACCEPTED]
+class Solution
+{
+public:
+    void floydWarshal(int n, vector<vector<int>> &dp)
+    {
+        for (int k = 0; k < n; k++)
+        {
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    if (dp[i][k] != INT_MAX && dp[k][j] != INT_MAX && dp[i][j] > dp[i][k] + dp[k][j])
+                        dp[i][j] = dp[i][k] + dp[k][j];
+                }
+            }
+        }
+    }
+    int findTheCity(int n, vector<vector<int>> &edges, int distanceThreshold)
+    {
+        vector<vector<int>> dp(n, vector<int>(n, INT_MAX));
+        for (int i = 0; i < n; i++)
+            dp[i][i] = 0;
+        for (auto &edge : edges)
+        {
+            dp[edge[0]][edge[1]] = edge[2];
+            dp[edge[1]][edge[0]] = edge[2];
+        }
+        floydWarshal(n, dp);
+        int res = 0, maxCity = INT_MAX;
+        for (int i = 0; i < n; i++)
+        {
+            int curCity = 0;
+            for (int j = 0; j < n; j++)
+            {
+                curCity += (dp[i][j] <= distanceThreshold);
+            }
+            if (maxCity >= curCity)
+            {
+                maxCity = curCity;
                 res = i;
             }
         }
