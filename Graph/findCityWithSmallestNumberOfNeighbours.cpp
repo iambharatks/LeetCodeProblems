@@ -3,6 +3,7 @@
 using namespace std;
 
 //! O(N^4) [ TIME LIMITED EXCEEDED ]
+// Bellman Ford Algorithm
 class Solution
 {
 public:
@@ -44,6 +45,7 @@ public:
 };
 
 //* O(N^3) [ACCEPTED]
+// Floyd Warshal ALgorithm
 class Solution
 {
 public:
@@ -91,6 +93,7 @@ public:
 };
 
 //* O(N*N*logN) [ACCEPTED]
+// Dijkstra Algorithm
 class Solution
 {
 public:
